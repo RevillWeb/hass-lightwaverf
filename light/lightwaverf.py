@@ -8,6 +8,7 @@ import voluptuous as vol
 
 #import light info
 from homeassistant.components.light import (Light, ATTR_BRIGHTNESS, SUPPORT_BRIGHTNESS)
+from homeassistant.const import (CONF_NAME, CONF_ID, CONF_LIGHTS)
 
 #Requirements
 REQUIREMENTS = ['pika==0.11.2']
@@ -22,8 +23,18 @@ _LOGGER = logging.getLogger(__name__)
 # 'switch' will receive discovery_info={'optional': 'arguments'}
 # as passed in above. 'light' will receive discovery_info=None
 def setup_platform(hass, config, add_devices, discovery_info=None):
-    """ Setup LightWave RF lights """
-    hass.states.set('lightwaverf.lights', f'Lights work! {lightwaverf.CONF_RABBIT_HOST}')
+    """ Setup LightWave RF lights """    
+    devices = []
+    lights = config[CONF_LIGHTS]
+    for light in lights:
+        deviceid = light[CONF_ID]
+        name = light[CONF_NAME]
+        device = LRFLight(name, False, deviceid, lightwaverf.CONF_LINK_IP, lightwaverf.CONF_RABBIT_HOST, lightwaverf.CONF_RABBIT_PORT, lightwaverf.CONF_RABBIT_QUEUE, lightwaverf.CONF_RABBIT_USERNAME, lightwaverf.CONF_RABBIT_PASS)
+        devices.append(device)
+    
+    add_devices(devices)
+    numLights = len(devices)
+    hass.states.set('lightwaverf.lights', f'Number of lights: {numLights}')
 
 #light class
 class LRFLight(Light):

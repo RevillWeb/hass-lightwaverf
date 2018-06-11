@@ -19,7 +19,7 @@ DEFAULT_LINK_IP = '255.255.255.255'
 #rabbitmq
 CONF_RABBIT_HOST = 'localhost'
 CONF_RABBIT_QUEUE = 'LightwaveRF'
-CONF_RABBIT_USER_NAME = 'username'
+CONF_RABBIT_USERNAME = 'username'
 CONF_RABBIT_PASS = 'password'
 CONF_RABBIT_PORT = 5672
 CONF_LINK_IP = '255.255.255.255'
@@ -29,7 +29,7 @@ PLATFORM_SCHEMA = PLATFORM_SCHEMA.extend({
     vol.Optional(CONF_RABBIT_HOST, default=DEFAULT_HOST): cv.string,
     vol.Optional(CONF_RABBIT_PORT, default=DEFAULT_PORT): cv.port,
     vol.Required(CONF_RABBIT_QUEUE): cv.string,
-    vol.Required(CONF_RABBIT_USER_NAME): cv.string,
+    vol.Required(CONF_RABBIT_USERNAME): cv.string,
     vol.Required(CONF_RABBIT_PASS): cv.string,
     vol.Optional(CONF_LIGHTS, default=[]):
         vol.All(cv.ensure_list, [
