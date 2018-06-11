@@ -17,7 +17,7 @@ DEFAULT_RFLINK = '255.255.255.255'
 
 #assign non known config
 #rabbitmq
-CONF_RABBITHOST = 'localhost'
+CONF_RABBIT_HOST = 'localhost'
 CONF_RABBITQUE = 'rabbitque'
 CONF_RABBITUNAME = 'rabbituname'
 CONF_RABBITPASS = 'rabbitpass'
@@ -26,7 +26,7 @@ CONF_RFLINK = 'rflink'
 
 #validate user config
 PLATFORM_SCHEMA = PLATFORM_SCHEMA.extend({
-    vol.Optional(CONF_RABBITHOST, default=DEFAULT_HOST): cv.string,
+    vol.Optional(CONF_RABBIT_HOST, default=DEFAULT_HOST): cv.string,
     vol.Optional(CONF_RABBITPORT, default=DEFAULT_PORT): cv.port,
     vol.Required(CONF_RABBITQUE): cv.string,
     vol.Required(CONF_RABBITUNAME): cv.string,
