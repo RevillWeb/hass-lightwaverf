@@ -17,7 +17,7 @@ DEFAULT_RFLINK = '255.255.255.255'
 
 #assign non known config
 #rabbitmq
-CONF_RABBITHOST = 'rabbithost'
+CONF_RABBITHOST = 'localhost'
 CONF_RABBITQUE = 'rabbitque'
 CONF_RABBITUNAME = 'rabbituname'
 CONF_RABBITPASS = 'rabbitpass'
