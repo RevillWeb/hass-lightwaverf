@@ -17,12 +17,12 @@ DEFAULT_LINK_IP = '255.255.255.255'
 
 #assign non known config
 #rabbitmq
-CONF_RABBIT_HOST = 'localhost'
-CONF_RABBIT_QUEUE = 'LightwaveRF'
-CONF_RABBIT_USERNAME = 'username'
-CONF_RABBIT_PASS = 'password'
-CONF_RABBIT_PORT = 5672
-CONF_LINK_IP = '255.255.255.255'
+CONF_RABBIT_HOST = 'rabbit_host'
+CONF_RABBIT_QUEUE = 'rabbit_queue'
+CONF_RABBIT_USERNAME = 'rabbit_username'
+CONF_RABBIT_PASS = 'rabbit_pass'
+CONF_RABBIT_PORT = 'rabbit_port'
+CONF_LINK_IP = 'link_ip'
 
 #validate user config
 PLATFORM_SCHEMA = PLATFORM_SCHEMA.extend({
