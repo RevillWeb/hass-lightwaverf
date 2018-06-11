@@ -1,4 +1,4 @@
-#import voluptuous as vol
+import voluptuous as vol
 #import validation
 import homeassistant.helpers.config_validation as cv
 from homeassistant.helpers.discovery import load_platform
