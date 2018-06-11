@@ -25,7 +25,7 @@ def setup_platform(hass, config, add_devices, discovery_info=None):
     """ Setup LightWave RF lights """    
     hass.states.set('lightwaverf.lights', f'Number of lights: {lightwaverf.CONF_LIGHTS}')
     devices = []
-    lights = lightwaverf.LIGHTS
+    lights = config[lightwaverf.CONF_LIGHTS]
     for light in lights:
         deviceid = light['id']
         name = light['name']
