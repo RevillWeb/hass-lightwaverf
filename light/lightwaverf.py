@@ -23,7 +23,7 @@ _LOGGER = logging.getLogger(__name__)
 # as passed in above. 'light' will receive discovery_info=None
 def setup_platform(hass, config, add_devices, discovery_info=None):
     """ Setup LightWave RF lights """
-    hass.states.set('lightwaverf.lights', f'Lights work! {lightwaverf.CONF_RABBITHOST}')
+    hass.states.set('lightwaverf.lights', f'Lights work! {lightwaverf.CONF_RABBIT_HOST}')
 
 #light class
 class LRFLight(Light):
