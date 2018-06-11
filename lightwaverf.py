@@ -24,6 +24,8 @@ CONF_RABBIT_PASS = 'password'
 CONF_RABBIT_PORT = 5672
 CONF_LINK_IP = '255.255.255.255'
 
+LIGHTS = None
+
 #validate user config
 PLATFORM_SCHEMA = PLATFORM_SCHEMA.extend({
     vol.Optional(CONF_RABBIT_HOST, default=DEFAULT_HOST): cv.string,
@@ -42,6 +44,7 @@ PLATFORM_SCHEMA = PLATFORM_SCHEMA.extend({
 })
 
 def setup(hass, config):
+    LIGHTS = config[DOMAIN]['lights']
     load_platform(hass, 'light', DOMAIN)
     load_platform(hass, 'switch', DOMAIN)
     hass.states.set('lightwaverf.LightwaveRF', f'Works!')
