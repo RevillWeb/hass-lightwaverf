@@ -45,4 +45,4 @@ def setup(hass, config):
 
     load_platform(hass, 'light', DOMAIN, { 'test': '123' })
     load_platform(hass, 'switch', DOMAIN)
-    hass.states.set('lightwaverf.LightwaveRF', f'Works! {CONF_RABBIT_HOST}')
+    hass.states.set('lightwaverf.LightwaveRF', f'Works! {config['lights']}')
