@@ -47,5 +47,5 @@ CONF_LINK_IP = 'link_ip'
 def setup(hass, config):
     load_platform(hass, 'light', DOMAIN)
     #load_platform(hass, 'switch', DOMAIN)
-    conf = str(config)
+    conf = config.get('rabbit_pass')
     hass.states.set('lightwaverf.LightwaveRF', f'Works! {conf}')
