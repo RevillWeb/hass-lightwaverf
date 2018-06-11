@@ -44,6 +44,6 @@ PLATFORM_SCHEMA = PLATFORM_SCHEMA.extend({
 def setup(hass, config):
 
     lights = config['lightwaverf']['lights']
-    load_platform(hass, 'light', DOMAIN, lights)
+    load_platform(hass, 'light', DOMAIN, { 'lights': lights })
     load_platform(hass, 'switch', DOMAIN)
     hass.states.set('lightwaverf.LightwaveRF', f'Works!')
