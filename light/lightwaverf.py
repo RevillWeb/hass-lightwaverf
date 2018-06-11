@@ -8,5 +8,4 @@ import sys
 # as passed in above. 'light' will receive discovery_info=None
 def setup_platform(hass, config, add_devices, discovery_info=None):
     """ Setup LightWave RF lights """        
-    conf = config.get('lightwaverf')
-    hass.states.set('lightwaverf.lights', f'Lights: {conf}')
+    hass.states.set('lightwaverf.lights', f'Lights: {discovery_info}')
