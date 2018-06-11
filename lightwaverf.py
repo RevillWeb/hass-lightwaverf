@@ -8,4 +8,5 @@ DOMAIN = 'lightwaverf'
 def setup(hass, config):
     load_platform(hass, 'light', DOMAIN)
     conf = config.get(DOMAIN)
-    hass.states.set('lightwaverf.LightwaveRF', f'Works! {conf}')
+    rabbit_pass = conf['rabbit_pass']
+    hass.states.set('lightwaverf.LightwaveRF', f'Works! {rabbit_pass}')
