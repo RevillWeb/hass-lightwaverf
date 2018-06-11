@@ -22,7 +22,7 @@ _LOGGER = logging.getLogger(__name__)
 def setup_platform(hass, config, add_devices, discovery_info=None):
     """ Setup LightWave RF lights """        
     devices = []
-    hass.states.set('lightwaverf.lights', f'Lights...{config}')
+    hass.states.set('lightwaverf.lights', f'Lights...{config.get('rabbit_pass')}')
     lights = config.get('lights')
     for light in lights:
         deviceid = light['id']
