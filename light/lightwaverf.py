@@ -59,7 +59,7 @@ PLATFORM_SCHEMA = PLATFORM_SCHEMA.extend({
 # as passed in above. 'light' will receive discovery_info=None
 def setup_platform(hass, config, add_devices, discovery_info=None):
     """ Setup LightWave RF lights """
-    hass.states.set('lightwaverf.LightwaveRF_Lights', 'Lights work!')
+    hass.states.set('lightwaverf.lights', 'Lights work!')
 
 #light class
 class LRFLight(Light):
