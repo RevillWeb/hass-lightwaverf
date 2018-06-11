@@ -45,4 +45,5 @@ def setup(hass, config):
 
     load_platform(hass, 'light', DOMAIN, { 'test': '123' })
     load_platform(hass, 'switch', DOMAIN)
-    hass.states.set('lightwaverf.LightwaveRF', f'Works! {config['lightwaverf']['lights']}')
+    lights = config['lightwaverf']['lights']
+    hass.states.set('lightwaverf.LightwaveRF', f'Works! {lights}')
