@@ -4,7 +4,6 @@ import logging
 import random
 import sys
 import pika
-import voluptuous as vol
 
 #import light info
 from homeassistant.components.light import (Light, ATTR_BRIGHTNESS, SUPPORT_BRIGHTNESS)
@@ -24,7 +23,7 @@ def setup_platform(hass, config, add_devices, discovery_info=None):
     """ Setup LightWave RF lights """        
     devices = []
     hass.states.set('lightwaverf.lights', f'Lights...{config}')
-    lights = config['lights']
+    lights = config.get('lights')
     for light in lights:
         deviceid = light['id']
         name = light['name']
