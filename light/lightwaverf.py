@@ -23,6 +23,8 @@ _LOGGER = logging.getLogger(__name__)
 # as passed in above. 'light' will receive discovery_info=None
 def setup_platform(hass, config, add_devices, discovery_info=None):
     """ Setup LightWave RF lights """    
+    logging.basicConfig(level=logging.DEBUG, filename="logfile", filemode="a+", format="%(asctime)-15s %(levelname)-8s %(message)s")
+    logging.info(config)
     hass.states.set('lightwaverf.lights', f'Number of lights: {lightwaverf.CONF_LIGHTS}')
     devices = []
     lights = config[lightwaverf.CONF_LIGHTS]
