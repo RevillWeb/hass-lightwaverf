@@ -9,8 +9,7 @@ import voluptuous as vol
 #import light info
 from homeassistant.components.light import (Light, ATTR_BRIGHTNESS, SUPPORT_BRIGHTNESS)
 
-#Requirements
-REQUIREMENTS = ['pika==0.11.2']
+
 
 #set brightness support
 SUPPORT_LIGHTWAVE = (SUPPORT_BRIGHTNESS)
@@ -22,11 +21,10 @@ _LOGGER = logging.getLogger(__name__)
 # 'switch' will receive discovery_info={'optional': 'arguments'}
 # as passed in above. 'light' will receive discovery_info=None
 def setup_platform(hass, config, add_devices, discovery_info=None):
-    """ Setup LightWave RF lights """    
-    _LOGGER.info(config)
-    hass.states.set('lightwaverf.lights', f'Number of lights: {lightwaverf.CONF_LIGHTS}')
+    """ Setup LightWave RF lights """        
     devices = []
-    lights = config[lightwaverf.CONF_LIGHTS]
+    lights = config['lightwaverf']['lights']
+    hass.states.set('lightwaverf.lights', f'Lights...')
     for light in lights:
         deviceid = light['id']
         name = light['name']
@@ -34,8 +32,8 @@ def setup_platform(hass, config, add_devices, discovery_info=None):
         devices.append(device)
     
     add_devices(devices)
-    #numLights = len(devices)
-    #hass.states.set('lightwaverf.lights', f'Number of lights: {numLights}')
+    numLights = len(devices)
+    hass.states.set('lightwaverf.lights', f'Number of lights: {numLights}')
 
 #light class
 class LRFLight(Light):
