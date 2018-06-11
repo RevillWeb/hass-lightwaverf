@@ -8,4 +8,6 @@ import sys
 # as passed in above. 'light' will receive discovery_info=None
 def setup_platform(hass, config, add_devices, discovery_info=None):
     """ Setup LightWave RF lights """        
-    
+    conf = config.get(lightwaverf.DOMAIN)
+    rabbit_username = conf['rabbit_username']
+    hass.states.set('lightwaverf.lights', f'Lights: {rabbit_username}')
