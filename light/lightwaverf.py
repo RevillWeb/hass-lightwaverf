@@ -8,7 +8,6 @@ import voluptuous as vol
 
 #import light info
 from homeassistant.components.light import (Light, ATTR_BRIGHTNESS, SUPPORT_BRIGHTNESS)
-from homeassistant.const import (CONF_NAME, CONF_ID, CONF_LIGHTS)
 
 #Requirements
 REQUIREMENTS = ['pika==0.11.2']
@@ -25,10 +24,10 @@ _LOGGER = logging.getLogger(__name__)
 def setup_platform(hass, config, add_devices, discovery_info=None):
     """ Setup LightWave RF lights """    
     devices = []
-    lights = config[CONF_LIGHTS]
+    lights = config[lightwaverf.DOMAIN]['lights']
     for light in lights:
-        deviceid = light[CONF_ID]
-        name = light[CONF_NAME]
+        deviceid = light['id']
+        name = light['name']
         device = LRFLight(name, False, deviceid, lightwaverf.CONF_LINK_IP, lightwaverf.CONF_RABBIT_HOST, lightwaverf.CONF_RABBIT_PORT, lightwaverf.CONF_RABBIT_QUEUE, lightwaverf.CONF_RABBIT_USERNAME, lightwaverf.CONF_RABBIT_PASS)
         devices.append(device)
     
