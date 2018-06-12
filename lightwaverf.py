@@ -7,7 +7,7 @@ REQUIREMENTS = ['pika==0.11.2']
 DOMAIN = 'lightwaverf'
 
 RABBIT_HOST = 'localhost'
-RABBIT_PORT = 15672
+RABBIT_PORT = 5672
 RABBIT_QUEUE = 'LightwaveRF'
 RABBIT_USERNAME = None
 RABBIT_PASS = None
