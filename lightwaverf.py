@@ -20,7 +20,8 @@ def queue_command(msg):
     credentials = pika.PlainCredentials(RABBIT_USERNAME, RABBIT_PASS)
     connection = pika.BlockingConnection(pika.ConnectionParameters(RABBIT_HOST, RABBIT_PORT, '/', credentials))
     channel = connection.channel()
-    channel.basic_publish(exchange='', routing_key=RABBIT_QUEUE, body=msg)
+    payload = f'{RF_LINK}{msg}'
+    channel.basic_publish(exchange='', routing_key=RABBIT_QUEUE, body=payload)
     connection.close()
     return True
 

@@ -75,17 +75,17 @@ class LWRFLight(Light):
         if ATTR_BRIGHTNESS in kwargs:
             self._brightness = kwargs[ATTR_BRIGHTNESS]
             brightness_value = self.calculate_brightness(self._brightness)
-            msg = '%s|666, !%sFdP%d|Lights %d|%s ' % (self._rflink, self._deviceid, brightness_value, brightness_value, self._name)
+            msg = '|666, !%sFdP%d|Lights %d|%s ' % (self._id, brightness_value, brightness_value, self._name)
             lightwaverf.queue_command(msg)
         else:
-            msg = '%s|666, !%sFdP32|Turn On|%s ' % (self._rflink, self._deviceid, self._name)
+            msg = '|666, !%sFdP32|Turn On|%s ' % (self._id, self._name)
             lightwaverf.queue_command(msg)
 
         self.schedule_update_ha_state()
 
     def turn_off(self, **kwargs):
         """ Turn the device off. """ 
-        msg = "%s|666, !%sF0|Turn Off|%s " % (self._rflink, self._deviceid, self._name)
+        msg = "|666, !%sF0|Turn Off|%s " % (self._id, self._name)
         lightwaverf.queue_command(msg)
         self._state = False
         self.schedule_update_ha_state()
