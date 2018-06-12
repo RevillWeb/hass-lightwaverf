@@ -25,11 +25,12 @@ def queue_command(msg):
 
 def setup(hass, config):
     conf = config.get(DOMAIN)
-    if conf['rabbit_username']:
-        RABBIT_USERNAME = conf['rabbit_username']
-    if conf['rabbit_pass']:
-        RABBIT_PASS = conf['rabbit_pass']
+    conf_rabbit_username = conf['rabbit_username']
+    if conf_rabbit_username:
+        RABBIT_USERNAME = conf_rabbit_username
+    conf_rabbit_pass = conf['rabbit_pass']
+    if conf_rabbit_pass:
+        RABBIT_PASS = conf_rabbit_pass
     lights = conf['lights']
     load_platform(hass, 'light', DOMAIN, lights)
-    un = conf['rabbit_username']
-    hass.states.set('lightwaverf.LightwaveRF', f'Works! {un}')
+    hass.states.set('lightwaverf.LightwaveRF', f'Works! {RABBIT_USERNAME}, {RABBIT_PASS}')
