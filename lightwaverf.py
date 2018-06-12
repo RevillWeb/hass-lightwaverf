@@ -47,5 +47,9 @@ def setup(hass, config):
     lights = conf['lights']
     if lights:
         load_platform(hass, 'light', DOMAIN, lights)
+
+    switches = conf['switches']
+    if switches:
+        load_platform(hass, 'switch', DOMAIN, switches)
     
     return True
