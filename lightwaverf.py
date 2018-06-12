@@ -15,7 +15,6 @@ RF_LINK = '255.255.255.255'
 HASS = None
 
 def queue_command(msg):
-    HASS.states.set('lightwaverf.LightwaveRF', f'Message: {msg}')
     if not RABBIT_USERNAME or not RABBIT_PASS:
         return False
     credentials = pika.PlainCredentials(RABBIT_USERNAME, RABBIT_PASS)
@@ -23,20 +22,21 @@ def queue_command(msg):
     channel = connection.channel()
     channel.basic_publish(exchange='', routing_key=RABBIT_QUEUE, body=msg)
     connection.close()
-    HASS.states.set('lightwaverf.LightwaveRF', f'Message 2: {msg}')
     return True
 
 def setup(hass, config):
-    global HASS
-    HASS = hass
+    # Get the configuration for this platform
     conf = config.get(DOMAIN)
+    # Get the rabbit username from the config file
     conf_rabbit_username = conf['rabbit_username']
     if conf_rabbit_username:
         global RABBIT_USERNAME
         RABBIT_USERNAME = conf_rabbit_username
+    # Get the rabbit password from the config file
     conf_rabbit_pass = conf['rabbit_pass']
     if conf_rabbit_pass:
         global RABBIT_PASS
         RABBIT_PASS = conf_rabbit_pass
     lights = conf['lights']
-    load_platform(hass, 'light', DOMAIN, lights)
+    if lights:
+        load_platform(hass, 'light', DOMAIN, lights)
