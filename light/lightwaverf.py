@@ -9,4 +9,5 @@ import sys
 def setup_platform(hass, config, add_devices, discovery_info=None):
     """ Setup LightWave RF lights """        
     lightwaverf.queue_command("TEST123")
-    hass.states.set('lightwaverf.lights', f'Lights: {discovery_info}')
+    hass.states.set('lightwaverf.lights', f'Lights: {lightwaverf.RABBIT_PASS}')
+    return True
