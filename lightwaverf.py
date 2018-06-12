@@ -23,6 +23,7 @@ def queue_command(msg):
     channel = connection.channel()
     channel.basic_publish(exchange='', routing_key=RABBIT_QUEUE, body=msg)
     connection.close()
+    HASS.states.set('lightwaverf.LightwaveRF', f'Message 2: {msg}')
     return True
 
 def setup(hass, config):
@@ -39,4 +40,3 @@ def setup(hass, config):
         RABBIT_PASS = conf_rabbit_pass
     lights = conf['lights']
     load_platform(hass, 'light', DOMAIN, lights)
-    hass.states.set('lightwaverf.LightwaveRF', f'Works! {RABBIT_USERNAME}, {RABBIT_PASS}')
