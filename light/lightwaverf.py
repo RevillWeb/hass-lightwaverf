@@ -77,7 +77,7 @@ class LWRFLight(Light):
             msg = '|666, !%sFdP%d|Lights %d|%s ' % (self._id, brightness_value, brightness_value, self._name)
             lightwaverf.queue_command(msg)
         else:
-            msg = '|666, !%sFd1|Turn On|%s ' % (self._id, self._name)
+            msg = '|666, !%sFdP32|Turn On|%s ' % (self._id, self._name)
             lightwaverf.queue_command(msg)
 
         self.schedule_update_ha_state()
