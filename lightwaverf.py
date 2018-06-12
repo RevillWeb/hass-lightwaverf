@@ -11,7 +11,7 @@ RABBIT_PORT = 5672
 RABBIT_QUEUE = 'LightwaveRF'
 RABBIT_USERNAME = None
 RABBIT_PASS = None
-RF_LINK = '255.255.255.255'
+LINK_IP = '255.255.255.255'
 HASS = None
 
 def queue_command(msg):
@@ -20,7 +20,7 @@ def queue_command(msg):
     credentials = pika.PlainCredentials(RABBIT_USERNAME, RABBIT_PASS)
     connection = pika.BlockingConnection(pika.ConnectionParameters(RABBIT_HOST, RABBIT_PORT, '/', credentials))
     channel = connection.channel()
-    payload = f'{RF_LINK}{msg}'
+    payload = f'{LINK_IP}{msg}'
     channel.basic_publish(exchange='', routing_key=RABBIT_QUEUE, body=payload)
     connection.close()
     return True
@@ -38,6 +38,12 @@ def setup(hass, config):
     if conf_rabbit_pass:
         global RABBIT_PASS
         RABBIT_PASS = conf_rabbit_pass
+    # Get the link IP from the config if specified
+    conf_link_ip = conf['link_ip']
+    if conf_link_ip:
+        global LINK_IP
+        LINK_IP = conf_link_ip
+
     lights = conf['lights']
     if lights:
         load_platform(hass, 'light', DOMAIN, lights)
